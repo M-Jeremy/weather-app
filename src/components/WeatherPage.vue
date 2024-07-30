@@ -49,14 +49,14 @@ export default {
         };
     },
     methods: {
-        getData: function () {
+        getData: async function () {
             this.message = '';
             if (this.city === '') {
                 this.message = 'Veuillez saisir une ville';
             } else {
                 const req = `${import.meta.env.VITE_BASE_URL}?q=${this.city}&units=metric&${import.meta.env.VITE_OPEN_WEATHER_APP_ID}`;
                 this.loading = true;
-                axios.get(req)
+                await axios.get(req)
                     .then(response => {
                         this.city = response.data.name;
                         this.weatherData = response.data;
